@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chatbot</title>
+</head>
+
+<body>
+    <h2>Chatbot with Sentiment Analysis</h2>
+    <input type="text" id="userInput" placeholder="Type your message">
+    <button onclick="sendMessage()">Send</button>
+    <p id="botResponse"></p>
+
+    <script>
+        async function sendMessage() {
+            let message = document.getElementById("userInput").value;
+            let response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+            let data = await response.json();
+            document.getElementById("botResponse").innerText =
+                `Bot: ${data.response} (Sentiment: ${data.sentiment})`;
+        }
+    </script>
+</body>
+
+</html>
