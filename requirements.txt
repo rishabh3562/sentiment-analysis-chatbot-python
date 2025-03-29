@@ -1,4 +1,6 @@
 Flask
 textblob
 nltk
-gunicorn  # Required for Vercel deployment
+gunicorn
+werkzeug  # Important for request handling
+asgiref  # Required for ASGI conversion

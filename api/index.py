@@ -1,7 +1,5 @@
 from app import create_app
+from asgiref.wsgi import WsgiToAsgi
 
 app = create_app()
-
-# Required for Vercel deployment
-def handler(event, context):
-    return app(event, context)
+asgi_app = WsgiToAsgi(app)  # Convert WSGI to ASGI (required for Vercel)
